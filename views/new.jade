@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    form(id="submitform", method="post", action="/rank")
+      //아이디, 점수, 랭킹, 나라, 날짜, 범위
+      input(type="text", name="username", value="id1234")
+      input(type="number", name="point", value="12390874")
+      input(type="text", name="country", value="kr")
+      input(type="submit", value="확인")

@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/rank.css')
+  body
+    .row.show-grid(style="background-color:rgba(86, 124, 61, .15);")
+      .col-md-1.col-xs-1.rank rank
+      .col-md-4.col-xs-4.username nickname
+      .col-md-4.col-xs-4.point point
+      .col-md-3.col-xs-3.country country
+    -for(var count = 1; count <= items.length; count++) {
+      -var i = count - 1;
+      .row.show-grid
+        .col-md-1.col-xs-1.rank= count
+        .col-md-4.col-xs-4.username= items[i].username
+        .col-md-4.col-xs-4.point= items[i].point
+        .col-md-3.col-xs-3.country= items[i].country
+    -}
+    
