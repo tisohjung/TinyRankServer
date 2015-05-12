@@ -1,21 +1,46 @@
 doctype html
 html
   head
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-theme.min.css')
+    //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+    //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/rank.css')
+    //- script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
+    script(src='jquery.min.js')
+    script(src='/javascripts/rank.js')
+    script(src='/js/bootstrap.min.js')
+    //- script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+
   body
-    .row.show-grid(style="background-color:rgba(86, 124, 61, .15);")
-      .col-md-1.col-xs-1.rank rank
-      .col-md-4.col-xs-4.username nickname
-      .col-md-4.col-xs-4.point point
-      .col-md-3.col-xs-3.country country
-    -for(var count = 1; count <= items.length; count++) {
-      -var i = count - 1;
-      .row.show-grid
-        .col-md-1.col-xs-1.rank= count
-        .col-md-4.col-xs-4.username= items[i].username
-        .col-md-4.col-xs-4.point= items[i].point
-        .col-md-3.col-xs-3.country= items[i].country
-    -}
-    
+    table.table.table-striped.table-bordered(style="width:100%")
+      thead(style="background-color:rgba(86, 124, 61, .15);")
+        tr
+          th.rank Rank
+          th.username Nickname
+          th.point Point
+          th.country Country
+          th Modify
+          th Delete
+      -for(var count = 1; count <= items.length; count++) {
+        -var i = count - 1;
+        tbody
+          tr(id=items[i]._id)
+            th.rank= count
+            td.username= items[i].username
+            td.point= items[i].point
+            td.country= items[i].country
+            td.btn.btn-success.modify Modify
+            td.btn.btn-danger.delete Delete
+      -}
+
+      
+    form(id="submitform", method="post", action="/rank")
+      //아이디, 점수, 랭킹, 나라, 날짜, 범위
+      input(type="text", name="username", value="id1234")
+      input(type="number", name="point", value="12390874")
+      input(type="text", name="country", value="kr")
+      input(type="submit", value="확인")
+
+      

@@ -22,6 +22,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
+app.use(express.static(path.join(__dirname, 'node_modules/jquery/dist')));
 
 db.connect();
 
@@ -39,13 +41,19 @@ app.get('/rank', function(req, res) {
 app.post('/rank', function(req, res) {
     var query = req.body;
     db.insertRank(query, function(item) {
-        res.json({success : true});
+        res.redirect('/rank');
+    });
+});
+
+app.get('/rankjson', function(req, res) {
+    db.findAllRank(function(items) {
+        res.json(items);
     });
 });
 
 app.post('/remove', function(req, res) {
     var query = req.body;
-    db.deleteRank(query, function(removed) {
+    db.removeRank(query, function(removed) {
         res.json({success : removed});
     });
 });

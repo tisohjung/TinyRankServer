@@ -18,7 +18,7 @@ exports.connect = function() {
 exports.findAllRank = function(callback) {
   Rank.find({}).limit(100).toArray(function(err, items) {
     if (err) console.log('err findallrank : ' + err);
-    items.sort(function(a, b) {return a["point"] - b["point"];});
+    items.sort(function(a, b) {return b["point"] - a["point"];});
     callback(items);
   });
 };
@@ -31,10 +31,10 @@ exports.insertRank = function(query, callback) {
   });
 };
 
-exports.deleteRank = function(query, callback) {
+exports.removeRank = function(query, callback) {
   if (query._id) {
-    query._id = ObjectID.createFromHexString(query._id);
-    db.Rank.remove(query, function(err, removed) {
+    query._id = ObjectID(query._id);
+    Rank.remove(query, {w:1}, function(err, removed) {
       if (err) console.log('err delete : ' + err);
       callback(removed);
     });
