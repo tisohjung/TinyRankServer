@@ -14,23 +14,11 @@ html
     //- script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
 
   body
-    table.table.table-striped.table-bordered(style="width:100%")
-      thead(style="background-color:rgba(86, 124, 61, .15);")
-        tr
-          th.rank Rank
-          th.username Nickname
-          th.point Point
-          th.country Country
-          th Modify
-          th Delete
-      -for(var count = 1; count <= items.length; count++) {
-        -var i = count - 1;
-        tbody
-          tr(id=items[i]._id)
-            th.rank= count
-            td.username= items[i].username
-            td.point= items[i].point
-            td.country= items[i].country
-            td.btn.btn-success.modify Modify
-            td.btn.btn-danger.delete Delete
-      -}
+    form(id="submitform", method="post", action="/rank")
+      //아이디, 점수, 랭킹, 나라, 날짜, 범위
+      input(type="text", name="username", value="id1234")
+      input(type="number", name="point", value="12390874")
+      input(type="text", name="country", value="kr")
+      input(type="submit", value="확인")
+
+      

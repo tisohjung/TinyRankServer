@@ -37,6 +37,9 @@ app.get('/rank', function(req, res) {
         res.render('rank', {items: items});
     });
 });
+app.get('/submit', function(req, res) {
+    res.render('submit', {});
+});
 
 app.post('/rank', function(req, res) {
     var query = req.body;
