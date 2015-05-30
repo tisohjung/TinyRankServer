@@ -6,7 +6,7 @@ html
     //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
     //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/rank.css')
+    //- link(rel='stylesheet', href='/stylesheets/rank.css')
     //- script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
     script(src='jquery.min.js')
     script(src='/javascripts/rank.js')
@@ -15,22 +15,23 @@ html
 
   body
     table.table.table-striped.table-bordered(style="width:100%")
-      thead(style="background-color:rgba(86, 124, 61, .15);")
-        tr
-          th.rank Rank
-          th.username Nickname
-          th.point Point
-          th.country Country
-          th Modify
-          th Delete
-      -for(var count = 1; count <= items.length; count++) {
-        -var i = count - 1;
+        thead(style="background-color:rgba(86, 124, 61, .15);")
+          tr.header
+            th.col-xs-2.rank Rank
+            th.col-xs-2.country Country
+            th.col-xs-4.username Nickname
+            th.col-xs-4.point Point
+    #tablebody
+      table.table.table-striped.table-bordered(style="width:100%")
         tbody
-          tr(id=items[i]._id)
-            th.rank= count
-            td.username= items[i].username
-            td.point= items[i].point
-            td.country= items[i].country
-            td.btn.btn-success.modify Modify
-            td.btn.btn-danger.delete Delete
-      -}
+          -for(var count = 1; count <= items.length; count++) {
+            -var i = count - 1;
+              tr(id=items[i]._id)
+                td.col-xs-2.rank= count
+                td.col-xs-2.country= items[i].country
+                td.col-xs-4.username= items[i].username
+                td.col-xs-4.point= items[i].point
+          -}
+
+  script.
+    nonbounce("tablebody");

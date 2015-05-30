@@ -1,8 +1,29 @@
 body {
-  padding: 50px;
+  margin: 0px;
+  padding: 0px;
+  /*padding: 50px;*/
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+html, body{
+  margin:0;
+  padding:0;
+  height:100%;
+}
+body {
+  position: relative;
+  /*padding-top: 37px;*/
+  background: transparent;
+}
+#tablebody {
+  overflow-y: auto;
+  height: 180px;
+  /*height: 100%;*/
+}
+.table {
+  margin-bottom: 0px;
 }
