@@ -37,6 +37,9 @@ app.get('/rank', function(req, res) {
         res.render('rank', {items: items});
     });
 });
+app.post('/check', function(req, res) {
+    res.json({success : 1});
+})
 app.get('/submit', function(req, res) {
     res.render('submit', {});
 });
@@ -44,7 +47,8 @@ app.get('/submit', function(req, res) {
 app.post('/rank', function(req, res) {
     var query = req.body;
     db.insertRank(query, function(item) {
-        res.redirect('/rank');
+        res.json({success : true});
+        // res.redirect('/rank');
     });
 });
 
@@ -64,6 +68,11 @@ app.get('/new', function(req, res) {
     res.render('new');
 });
 
+app.get('/lastrank', function(req, res) {
+    db.findLastRank({}, function(items) {
+        res.json({last : items});
+    });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

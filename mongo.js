@@ -40,3 +40,11 @@ exports.removeRank = function(query, callback) {
     });
   }
 };
+
+exports.findLastRank = function(query, callback) {
+  Rank.find({}).limit(100).toArray(function(err, items) {
+    if (err) console.log('err findLastRank : ' + err);
+    items.sort(function(a, b) {return a["point"] - b["point"];})
+    callback(items[0]["point"]);
+  });
+};
