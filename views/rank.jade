@@ -8,30 +8,39 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     //- link(rel='stylesheet', href='/stylesheets/rank.css')
     //- script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
-    script(src='jquery.min.js')
+    script(src='/jquery.min.js')
     script(src='/javascripts/rank.js')
     //- script(src='/js/bootstrap.min.js')
     //- script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
 
+  script.
+    var rank = !{rank};
   body
-    table.table.table-striped.table-bordered(style="width:100%")
-        thead(style="background-color:rgba(86, 124, 61, .15);")
-          tr.header
-            th.col-xs-2.rank Rank
-            th.col-xs-2.country Country
-            th.col-xs-4.username Nickname
-            th.col-xs-4.point Point
+    //- table.table.table-striped.table-bordered(style="width:100%")
+    //-     thead(style="background-color:rgba(86, 124, 61, .15);")
+    //-       tr.header
+    //-         th.col-xs-2.rank Rank
+    //-         th.col-xs-2.country Country
+    //-         th.col-xs-4.username Nickname
+    //-         th.col-xs-4.point Point
     #tablebody
-      table.table.table-striped.table-bordered(style="width:100%")
+      table.table.table-striped.table-bordered.bg(style="width:100%")
         tbody
           -for(var count = 1; count <= items.length; count++) {
             -var i = count - 1;
-              tr(id=items[i]._id)
-                td.col-xs-2.rank= count
-                td.col-xs-2.country= items[i].country
-                td.col-xs-4.username= items[i].username
-                td.col-xs-4.point= items[i].point
+              tr(id=i, post=items[i]._id)
+                td.col-xs-3.bg.rank= count
+                td.col-xs-3.bg.country= items[i].country
+                td.col-xs-3.bg.username= items[i].username
+                td.col-xs-3.bg.point= items[i].point
           -}
 
   script.
     nonbounce("tablebody");
+    $(function(){
+      console.log(rank);
+      if (rank != '0') {
+        $('#tablebody').scrollTo('#' + rank)
+        // scroll to rank
+      }
+    });
