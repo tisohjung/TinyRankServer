@@ -34,7 +34,12 @@ app.get('/', function(req, res) {
 app.get('/rank', function(req, res) {
     db.findAllRank(function(items) {
         //res.json(items);
-        res.render('rank', {items: items});
+        res.render('rank', {items: items, rank: '0'});
+    });
+});
+app.get('/rank/:number', function(req, res) {
+    db.findAllRank(function(items) {
+        res.render('rank', {items: items, rank: req.params.number} );
     });
 });
 app.post('/check', function(req, res) {
